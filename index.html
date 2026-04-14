@@ -1012,15 +1012,23 @@
   /* ══════════════════════════════════════
      WHATSAPP FORM BUILDER
   ══════════════════════════════════════ */
-  function sendWA() {
-    const name  = (document.getElementById('waName').value.trim())  || 'Seseorang';
-    const topic = (document.getElementById('waTopic').value.trim()) || 'Diskusi';
-    const msg   = (document.getElementById('waMsg').value.trim())   || '(tidak ada pesan)';
-    const text  = encodeURIComponent(
-      `Assalamu'alaikum, Azka!\n\nSaya ${name}.\nTopik: ${topic}\n\n${msg}\n\n– Dikirim dari portofolio`
-    );
-    window.open(`https://wa.me/${WA_NUM}?text=${text}`, '_blank');
-  }
+function sendWA() {
+  const name  = (document.getElementById('waName').value.trim())  || 'Seseorang';
+  const topic = (document.getElementById('waTopic').value.trim()) || 'Diskusi';
+  const msg   = (document.getElementById('waMsg').value.trim())   || '(tidak ada pesan)';
+  const text  = encodeURIComponent(
+    `Assalamu'alaikum, Azka!\n\nSaya ${name}.\nTopik: ${topic}\n\n${msg}\n\n– Dikirim dari portofolio`
+  );
+  const url = `https://wa.me/${WA_NUM}?text=${text}`;
+
+  const a = document.createElement('a');
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
 
   /* ══════════════════════════════════════
      TOAST HELPER
